@@ -57,13 +57,21 @@
             score = 0;
             scoreElement.textContent = score;
             gameOverElement.style.display = 'none';
+            startGame();
         }
 
-        // Example: Update score every second
-        setInterval(updateScore, 1000);
+        function startGame() {
+            // Clear any existing intervals
+            clearInterval(window.gameInterval);
+            clearTimeout(window.gameTimeout);
 
-        // Example: End game after 10 seconds
-        setTimeout(gameOver, 10000);
+            // Start new game
+            window.gameInterval = setInterval(updateScore, 1000);
+            window.gameTimeout = setTimeout(gameOver, 10000);
+        }
+
+        // Start the game initially
+        startGame();
 
         // Listen for space bar to restart
         document.addEventListener('keydown', function(event) {
